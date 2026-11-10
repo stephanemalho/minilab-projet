@@ -79,7 +79,11 @@ def test_missing_checkpoint_gives_503(tmp_path, monkeypatch):
 
 
 def test_the_course_pages_may_call_the_local_server():
-    for origin in ("http://localhost:3000", "https://minilab-llm.vercel.app"):
+    for origin in (
+        "http://localhost:3000",
+        "https://minilab-llm.com",
+        "https://minilab-llm.vercel.app",
+    ):
         preflight = client.options(
             "/v1/chat",
             headers={
