@@ -35,7 +35,22 @@ uv run python -c "import torch; print(torch.__version__)"
 3. Validez-le : `uv run pytest tests/minilab/test_tokenizer.py`.
 
 Les étapes, dans l’ordre : `tokenizer`, `model`, `train`, `generate`, `chat`, `server`.
-Les tests d’une étape échouent tant que son fichier n’existe pas : c’est normal.
+
+## Du rouge au vert
+
+Au départ, les 30 tests sont rouges : aucun fichier d’étape n’existe, donc pytest ne peut
+même pas les charger (`6 errors during collection`). C’est normal : les tests sont écrits
+avant le code, et votre travail consiste à les faire passer au vert, étape par étape.
+Ne modifiez jamais les tests : si l’un d’eux échoue, c’est le code qu’il faut corriger.
+
+Pour suivre votre progression sur tout le projet :
+
+```sh
+uv run pytest tests/minilab -q --continue-on-collection-errors
+```
+
+La dernière ligne passe de `6 errors` à `6 passed, 5 errors` après l’étape 1, puis jusqu’à
+`30 passed` quand le projet est complet.
 
 Les fichiers produits (tokenizer, poids du modèle) sont écrits dans `checkpoints/minilab/`,
 ignoré par Git.
